@@ -23,7 +23,7 @@ namespace ShareInformationApp
             Console.WriteLine("Average Share Price: {0}", info.AverageSharePriceForPeriod);
             
             var exporter = serviceProvider.GetService<IBasicShareInformationExporter>();
-            var jsonString = await exporter.GetAsJsonString("GOOG");
+            var jsonString = exporter.GetJsonString(info);
             Console.WriteLine("JSON: {0}", jsonString);
         }
         

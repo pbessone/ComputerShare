@@ -4,6 +4,6 @@ namespace ShareInformationServices
 {
     public interface IBasicShareInformationExporter
     {
-        Task<string> GetAsJsonString(string symbol);
+        string GetJsonString(BasicShareInformation shareInformation);
     }
 }

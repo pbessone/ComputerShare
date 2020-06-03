@@ -7,17 +7,15 @@ namespace ShareInformationServicesTests
 {
     public class BasicShareInformationExporterTests
     {
-        private readonly Mock<IBasicShareInformationService> _mockBasicShareInformationService;
         private readonly BasicShareInformationExporter _basicShareInformationExporter;
 
         public BasicShareInformationExporterTests()
         {
-            _mockBasicShareInformationService = new Mock<IBasicShareInformationService>();
-            _basicShareInformationExporter = new BasicShareInformationExporter(_mockBasicShareInformationService.Object);            
+            _basicShareInformationExporter = new BasicShareInformationExporter();            
         }
         
         [Fact]
-        public async Task GetAsJsonString_CanFetchBasicShareInformation_ReturnJsonString()
+        public void GetAsJsonString_CanFetchBasicShareInformation_ReturnJsonString()
         {
             // Arrange
             string symbol = "GOOG";
@@ -29,12 +27,8 @@ namespace ShareInformationServicesTests
                 AverageSharePriceForPeriod = 2
             };
             
-            _mockBasicShareInformationService
-                .Setup(x => x.GetBasicShareInformationAsync(symbol))
-                .ReturnsAsync(basicShareInformation);
-                
             // Act
-            var jsonString = await _basicShareInformationExporter.GetAsJsonString(symbol);
+            var jsonString = _basicShareInformationExporter.GetJsonString(basicShareInformation);
 
             //Assert
             var expected = "{\"ShareName\":\"GOOG\",\"MinimumSharePriceForPeriod\":1,\"MaximumSharePriceForPeriod\":3,\"AverageSharePriceForPeriod\":2}";
