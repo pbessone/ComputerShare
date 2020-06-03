@@ -2,6 +2,6 @@
 {
     public class ChartResultIndicatorAdjClose
     {
-        public double[] AdjClose { get; set; }
+        public decimal[] AdjClose { get; set; }
     }
 }

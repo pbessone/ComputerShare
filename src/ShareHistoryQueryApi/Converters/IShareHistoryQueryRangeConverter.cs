@@ -1,4 +1,4 @@
-﻿namespace ShareHistoryQueyApi.Converters
+﻿namespace ShareHistoryQueryApi.Converters
 {
     public interface IShareHistoryQueryRangeConverter
     {

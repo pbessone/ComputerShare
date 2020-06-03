@@ -20,9 +20,9 @@
         
         public string ExchangeTimeZoneName { get; set; }
         
-        public double RegularMarketPrice { get; set; }
+        public decimal RegularMarketPrice { get; set; }
         
-        public double ChartPreviousClose { get; set; }
+        public decimal ChartPreviousClose { get; set; }
         
         public int PriceHint { get; set; }
         

@@ -1,5 +1,6 @@
-﻿using System.Threading.Tasks;
-using ShareHistoryQueyApi;
+﻿using System;
+using System.Threading.Tasks;
+using ShareHistoryQueryApi;
 
 namespace ShareInformationServices
 {
@@ -14,71 +15,87 @@ namespace ShareInformationServices
         
         public async Task<BasicShareInformation> GetBasicShareInformationAsync(string symbol)
         {
+            if (string.IsNullOrWhiteSpace(symbol))
+            {
+                throw new ArgumentNullException(nameof(symbol));
+            }
+            
             var range = ShareHistoryQueryRange.OneWeek;
-
             var response = await _shareHistoryQueryService.Query(symbol, range);
 
             var history = response.History;
-            var minimumSharePriceForPeriod = CalculateMinimumSharePrice(history.Low);
             var maximumSharePriceForPeriod = CalculateMaximumSharePrice(history.High);
+            var minimumSharePriceForPeriod = CalculateMinimumSharePrice(history.Low);
             var averageSharePriceForPeriod = CalculateAverageSharePrice(history);
             
             var shareInformation = new BasicShareInformation
             {
                 ShareName = response.ShareName,
-                MinimumSharePriceForPeriod = minimumSharePriceForPeriod,
                 MaximumSharePriceForPeriod = maximumSharePriceForPeriod,
+                MinimumSharePriceForPeriod = minimumSharePriceForPeriod,
                 AverageSharePriceForPeriod = averageSharePriceForPeriod
             };
             
             return shareInformation;
         }
 
-        private double CalculateMinimumSharePrice(double?[] quoteIndicatorsLow)
+        private decimal CalculateMaximumSharePrice(decimal?[] quoteIndicatorsHigh)
         {
-            double minValue = double.MaxValue;
-            foreach (var value in quoteIndicatorsLow)
+            decimal maxSharePrice = 0;
+            foreach (var sharePrice in quoteIndicatorsHigh)
             {
-                if (value != null && value < minValue)
+                if (sharePrice != null && sharePrice > maxSharePrice)
                 {
-                    minValue = value.Value;
+                    maxSharePrice = sharePrice.Value;
                 }
             }
             
-            return minValue;
+            return maxSharePrice;
         }
-        
-        private double CalculateMaximumSharePrice(double?[] quoteIndicatorsHigh)
+
+        private decimal CalculateMinimumSharePrice(decimal?[] quoteIndicatorsLow)
         {
-            double maxValue = 0;
-            foreach (var value in quoteIndicatorsHigh)
+            var minSharePrice = decimal.MaxValue;
+            foreach (var sharePrice in quoteIndicatorsLow)
             {
-                if (value != null && value > maxValue)
+                if (sharePrice != null && sharePrice < minSharePrice)
                 {
-                    maxValue = value.Value;
+                    minSharePrice = sharePrice.Value;
                 }
             }
             
-            return maxValue;
+            // The initial min value wouldn't have changed if there were no low quote indicators, so just return 0
+            if (minSharePrice == decimal.MaxValue)
+            {
+                return 0;
+            }
+            
+            return minSharePrice;
         }
         
-        private double CalculateAverageSharePrice(ShareHistory quoteIndicators)
+        private decimal CalculateAverageSharePrice(ShareHistory history)
         {
-            double sum = 0;
+            decimal sum = 0;
             int count = 0;
-            for (int x = 0; x < quoteIndicators.Close.Length; x++)
+            for (int x = 0; x < history.TimeStamp.Length; x++)
             {
-                Add(quoteIndicators.Close[x], ref sum, ref count);
-                Add(quoteIndicators.High[x], ref sum, ref count);
-                Add(quoteIndicators.Low[x], ref sum, ref count);
-                Add(quoteIndicators.Open[x], ref sum, ref count);
+                Add(history.Close[x], ref sum, ref count);
+                Add(history.High[x], ref sum, ref count);
+                Add(history.Low[x], ref sum, ref count);
+                Add(history.Open[x], ref sum, ref count);
             }
 
-            double average = sum / count;
+            // If nothing was counted just return 0
+            if (count == 0)
+            {
+                return 0;
+            }
+
+            decimal average = sum / count;
             return average;
         }
 
-        private static void Add(double? sharePrice, ref double sum, ref int count)
+        private static void Add(decimal? sharePrice, ref decimal sum, ref int count)
         {
             if (sharePrice != null)
             {

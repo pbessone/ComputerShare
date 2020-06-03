@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ShareHistoryQueyApi\ShareHistoryQueyApi.csproj" />
+      <ProjectReference Include="..\ShareHistoryQueryApi\ShareHistoryQueryApi.csproj" />
     </ItemGroup>
 
 </Project>

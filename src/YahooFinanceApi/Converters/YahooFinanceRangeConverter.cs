@@ -1,6 +1,6 @@
 ﻿using System;
-using ShareHistoryQueyApi;
-using ShareHistoryQueyApi.Converters;
+using ShareHistoryQueryApi;
+using ShareHistoryQueryApi.Converters;
 
 namespace YahooFinanceApi.Converters
 {

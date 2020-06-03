@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ShareHistoryQueyApi;
-using ShareHistoryQueyApi.Converters;
+using ShareHistoryQueryApi;
+using ShareHistoryQueryApi.Converters;
 using YahooFinanceApi.Converters;
 
 namespace YahooFinanceApi

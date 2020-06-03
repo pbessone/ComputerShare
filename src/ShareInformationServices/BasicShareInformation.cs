@@ -4,10 +4,10 @@
     {
         public string ShareName { get; set; }
         
-        public double MinimumSharePriceForPeriod { get; set; }
+        public decimal MinimumSharePriceForPeriod { get; set; }
         
-        public double MaximumSharePriceForPeriod { get; set; }
+        public decimal MaximumSharePriceForPeriod { get; set; }
         
-        public double AverageSharePriceForPeriod { get; set; }
+        public decimal AverageSharePriceForPeriod { get; set; }
     }
 }

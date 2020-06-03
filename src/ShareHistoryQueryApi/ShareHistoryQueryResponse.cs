@@ -1,4 +1,4 @@
-﻿namespace ShareHistoryQueyApi
+﻿namespace ShareHistoryQueryApi
 {
     public class ShareHistoryQueryResponse
     {

@@ -4,13 +4,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6D7BCCD1-13E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{85DA1262-0639-4025-9EAB-2C032953B3DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareHistoryQueyApi", "src\ShareHistoryQueyApi\ShareHistoryQueyApi.csproj", "{714386B5-BA9C-4A00-A9BC-04F45B31E1C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareHistoryQueryApi", "src\ShareHistoryQueryApi\ShareHistoryQueryApi.csproj", "{714386B5-BA9C-4A00-A9BC-04F45B31E1C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareInformationApp", "src\ShareInformationApp\ShareInformationApp.csproj", "{683D8531-600A-45E8-89A3-249E1CBD41C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareInformationServices", "src\ShareInformationServices\ShareInformationServices.csproj", "{82F97188-E135-4893-9DC5-1CAD3D470FE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooFinanceApi", "src\YahooFinanceApi\YahooFinanceApi.csproj", "{5BFFEDAB-DB73-4FB6-8B08-0914FA07EA7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareInformationServicesTests", "test\ShareInformationServicesTests\ShareInformationServicesTests.csproj", "{6BD389DF-FEB9-4706-9029-4DB1BA8CEF0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooFinanceApiTests", "test\YahooFinanceApiTests\YahooFinanceApiTests.csproj", "{FA706D89-11BA-417C-9A79-CF2503006158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,11 +38,21 @@ Global
 		{5BFFEDAB-DB73-4FB6-8B08-0914FA07EA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BFFEDAB-DB73-4FB6-8B08-0914FA07EA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BFFEDAB-DB73-4FB6-8B08-0914FA07EA7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD389DF-FEB9-4706-9029-4DB1BA8CEF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD389DF-FEB9-4706-9029-4DB1BA8CEF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD389DF-FEB9-4706-9029-4DB1BA8CEF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD389DF-FEB9-4706-9029-4DB1BA8CEF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA706D89-11BA-417C-9A79-CF2503006158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA706D89-11BA-417C-9A79-CF2503006158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA706D89-11BA-417C-9A79-CF2503006158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA706D89-11BA-417C-9A79-CF2503006158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{714386B5-BA9C-4A00-A9BC-04F45B31E1C1} = {6D7BCCD1-13ED-4E1D-8FB6-1C4087396444}
 		{683D8531-600A-45E8-89A3-249E1CBD41C6} = {6D7BCCD1-13ED-4E1D-8FB6-1C4087396444}
 		{82F97188-E135-4893-9DC5-1CAD3D470FE1} = {6D7BCCD1-13ED-4E1D-8FB6-1C4087396444}
 		{5BFFEDAB-DB73-4FB6-8B08-0914FA07EA7A} = {6D7BCCD1-13ED-4E1D-8FB6-1C4087396444}
+		{6BD389DF-FEB9-4706-9029-4DB1BA8CEF0E} = {85DA1262-0639-4025-9EAB-2C032953B3DD}
+		{FA706D89-11BA-417C-9A79-CF2503006158} = {85DA1262-0639-4025-9EAB-2C032953B3DD}
 	EndGlobalSection
 EndGlobal

@@ -1,10 +1,11 @@
-﻿namespace ShareHistoryQueyApi
+﻿namespace ShareHistoryQueryApi
 {
     public enum ShareHistoryQueryRange
     {
         OneDay,
         OneWeek,
         OneMonth,
-        ThreeMonths
+        ThreeMonths,
+        SixMonths
     }
 }

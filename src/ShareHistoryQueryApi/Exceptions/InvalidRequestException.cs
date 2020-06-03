@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShareHistoryQueyApi.Exceptions
+namespace ShareHistoryQueryApi.Exceptions
 {
     public class InvalidRequestException : Exception
     {

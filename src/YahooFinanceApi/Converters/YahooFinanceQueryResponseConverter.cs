@@ -1,5 +1,5 @@
-﻿using ShareHistoryQueyApi;
-using ShareHistoryQueyApi.Converters;
+﻿using ShareHistoryQueryApi;
+using ShareHistoryQueryApi.Converters;
 
 namespace YahooFinanceApi.Converters
 {
@@ -7,6 +7,11 @@ namespace YahooFinanceApi.Converters
     {
         public ShareHistoryQueryResponse ConvertFrom(ApiResponse queryResponse)
         {
+            if (queryResponse == null)
+            {
+                return null;
+            }
+
             var result = queryResponse.Chart.Result[0];
             var quoteIndicators = result.Indicators.Quote[0];
             return new ShareHistoryQueryResponse
