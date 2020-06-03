@@ -30,7 +30,7 @@ namespace YahooFinanceApi
         {
             var yahooRange = _shareHistoryQueryRangeConverter.ConvertFrom(range);
             var url = $"{_baseUrl}/{symbol}?range={yahooRange}&interval=1d";
-            using var response = await _httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync(url);
 
             var result = await ParseResponse(response);
             
