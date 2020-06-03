@@ -10,9 +10,9 @@
         
         public string InstrumentType { get; set; }
         
-        public long FirstTradeDate { get; set; }
+        public long? FirstTradeDate { get; set; }
         
-        public long RegularMarketTime { get; set; }
+        public long? RegularMarketTime { get; set; }
         
         public int GmtOffset { get; set; }
         

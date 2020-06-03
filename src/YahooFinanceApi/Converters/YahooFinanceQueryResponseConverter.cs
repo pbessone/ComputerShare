@@ -14,18 +14,24 @@ namespace YahooFinanceApi.Converters
 
             var result = queryResponse.Chart.Result[0];
             var quoteIndicators = result.Indicators.Quote[0];
-            return new ShareHistoryQueryResponse
+            var shareHistoryQueryResponse = new ShareHistoryQueryResponse
             {
                 ShareName = result.Meta.Symbol,
-                History = new ShareHistory
-                {
-                    TimeStamp = result.TimeStamp,
-                    Open = quoteIndicators.Open,
-                    Close = quoteIndicators.Close,
-                    Low = quoteIndicators.Low,
-                    High = quoteIndicators.High
-                }
+                History = new ShareHistory()
             };
+
+            // If timestamp is null it means there are no results for the period so we can simply ignore
+            if (result.TimeStamp != null)
+            {
+                var history = shareHistoryQueryResponse.History;
+                history.TimeStamp = result.TimeStamp;
+                history.Open = quoteIndicators.Open;
+                history.Close = quoteIndicators.Close;
+                history.Low = quoteIndicators.Low;
+                history.High = quoteIndicators.High;
+            }
+
+            return shareHistoryQueryResponse;
         }
     }
 }

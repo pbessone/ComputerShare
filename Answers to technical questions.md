@@ -10,6 +10,8 @@ The two main things I would have added should I have had more time are logging a
 
 Logging because it's critical for any production ready application and caching because I can envision the services being called repeteadly and caching would help with performance and resiliency.
 
+Another thing I would have added is probably the validation of the stock symbol against a stock symbol list to ensure the user cannot type an invalid symbol name. Yahoo handles this by itself for the most part but it would be good to validate this without going to the yahoo api at all. I saw that nasdaq provides a list of symbols every day so maybe we could achieve this by creating a new microservide in charge of maintaining this list internally and then our basic stock information service would use this internal service instead of going out to yahoo.
+
 Other things I would have liked is to make this a RESTFul API, probably containerise it with Docker so we could deploy this very easily as an independent microservice in some container cloud and maybe even show case a minimal build pipeline with CakeBuild.
 
 Should I had gone with the RESTful API approach I would have liked to build a minimal web application to allow a user to consume these services.

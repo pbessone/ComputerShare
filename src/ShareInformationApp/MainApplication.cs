@@ -29,21 +29,21 @@ namespace ShareInformationApp
             var shouldContinue = true;  
             while (shouldContinue)
             {
-                var shareSymbol = GetUserInput("Please type the name of the share (example: GOOG, AAPL, CSCO):", "Please enter a valid share symbol");
+                var shareSymbol = HandleUserInput("Please type the name of the share (example: GOOG, AAPL, CSCO):", "Please enter a valid share symbol");
                     
                 var currentShareInformation = await GetShareInformation(shareSymbol);
                 if (currentShareInformation != null)
                 {
                     PrintShareInformation(currentShareInformation);
 
-                    var exportChoice = GetUserInput("Do you want to export this share information as JSON?", "Not a valid option", yesNoOptions);
+                    var exportChoice = HandleUserInput("Do you want to export this share information as JSON?", "Not a valid option", yesNoOptions);
                     if (exportChoice == "Y")
                     {
                         ExportShareInformation(currentShareInformation);
                     }
                 }
 
-                var continueChoice = GetUserInput("Do you want to query another share?", "Not a valid option", yesNoOptions);
+                var continueChoice = HandleUserInput("Do you want to query another share?", "Not a valid option", yesNoOptions);
                 if (continueChoice == "N")
                 {
                     shouldContinue = false;
@@ -89,7 +89,7 @@ namespace ShareInformationApp
             Console.WriteLine(jsonString);            
         }
 
-        private string GetUserInput(string inputMessage, string errorMessage, string[] validOptions = null)
+        private string HandleUserInput(string inputMessage, string errorMessage, string[] validOptions = null)
         {
             while (true)
             {
@@ -104,13 +104,13 @@ namespace ShareInformationApp
 
                 var userInput = Console.ReadLine();
                 if (string.IsNullOrEmpty(userInput) ||
-                    (validOptions != null && validOptions.Length > 0 && !validOptions.Contains(userInput)))
+                    (validOptions != null && validOptions.Length > 0 && !validOptions.Contains(userInput.ToUpper())))
                 {
                     Console.WriteLine(errorMessage);
                     continue;
                 }
                 
-                return userInput;
+                return userInput.ToUpper();
             }            
         }
     }
