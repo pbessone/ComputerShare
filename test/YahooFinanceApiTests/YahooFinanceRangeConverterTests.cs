@@ -1,6 +1,7 @@
 using System;
 using ShareHistoryQueryApi;
 using Xunit;
+using YahooFinanceApi;
 using YahooFinanceApi.Converters;
 
 namespace YahooFinanceApiTests
@@ -24,7 +25,7 @@ namespace YahooFinanceApiTests
             var yahooRange = _yahooFinanceRangeConverter.ConvertFrom(range);
             
             // Assert
-            Assert.Equal("1d", yahooRange);
+            Assert.Equal(YahooRange.OneDay, yahooRange);
         }
         
         [Fact]
@@ -37,7 +38,7 @@ namespace YahooFinanceApiTests
             var yahooRange = _yahooFinanceRangeConverter.ConvertFrom(range);
             
             // Assert
-            Assert.Equal("5d", yahooRange);
+            Assert.Equal(YahooRange.FiveDays, yahooRange);
         }
         
         [Fact]
@@ -50,7 +51,7 @@ namespace YahooFinanceApiTests
             var yahooRange = _yahooFinanceRangeConverter.ConvertFrom(range);
             
             // Assert
-            Assert.Equal("1mo", yahooRange);
+            Assert.Equal(YahooRange.OneMonth, yahooRange);
         }
         
         [Fact]
@@ -63,7 +64,7 @@ namespace YahooFinanceApiTests
             var yahooRange = _yahooFinanceRangeConverter.ConvertFrom(range);
             
             // Assert
-            Assert.Equal("3mo", yahooRange);
+            Assert.Equal(YahooRange.ThreeMonths, yahooRange);
         }
         
         [Fact]

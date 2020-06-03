@@ -11,13 +11,13 @@ namespace YahooFinanceApi.Converters
             switch (range)
             {
                 case ShareHistoryQueryRange.OneDay:
-                    return "1d";
+                    return YahooRange.OneDay;
                 case ShareHistoryQueryRange.OneWeek:
-                    return "5d";
+                    return YahooRange.FiveDays;
                 case ShareHistoryQueryRange.OneMonth:
-                    return "1mo";
+                    return YahooRange.OneMonth;
                 case ShareHistoryQueryRange.ThreeMonths:
-                    return "3mo";
+                    return YahooRange.ThreeMonths;
                 default:
                     throw new NotSupportedException("The range requested is not supported by this api.");
             }

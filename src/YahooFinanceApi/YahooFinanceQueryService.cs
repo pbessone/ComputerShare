@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,14 +8,14 @@ using ShareHistoryQueryApi.Exceptions;
 
 namespace YahooFinanceApi
 {
-    public class YahooFinanceQueryQueryService : IShareHistoryQueryService
+    public class YahooFinanceQueryService : IShareHistoryQueryService
     {
         private readonly string _baseUrl = "https://query1.finance.yahoo.com/v8/finance/chart";
         private readonly HttpClient _httpClient;
         private readonly IShareHistoryQueryResponseConverter<ApiResponse> _shareHistoryQueryResponseConverter;
         private readonly IShareHistoryQueryRangeConverter _shareHistoryQueryRangeConverter;
 
-        public YahooFinanceQueryQueryService(
+        public YahooFinanceQueryService(
             HttpClient httpClient,
             IShareHistoryQueryResponseConverter<ApiResponse> shareHistoryQueryResponseConverter,
             IShareHistoryQueryRangeConverter shareHistoryQueryRangeConverter)
@@ -29,7 +28,8 @@ namespace YahooFinanceApi
         public async Task<ShareHistoryQueryResponse> Query(string symbol, ShareHistoryQueryRange range)
         {
             var yahooRange = _shareHistoryQueryRangeConverter.ConvertFrom(range);
-            var url = $"{_baseUrl}/{symbol}?range={yahooRange}&interval=1d";
+            var interval = YahooInterval.OneDay; // This could be reduced up to 1 minute if we want more granular and precise data
+            var url = $"{_baseUrl}/{symbol}?range={yahooRange}&interval={interval}";
             var response = await _httpClient.GetAsync(url);
 
             var result = await ParseResponse(response);
@@ -51,8 +51,7 @@ namespace YahooFinanceApi
             }
             catch (JsonException)
             {
-                Console.WriteLine("Invalid JSON.");
-                throw;
+                throw new InvalidRequestException("JSON Exception", "There has been a problem parsing the response from the service");
             }
         }
     }

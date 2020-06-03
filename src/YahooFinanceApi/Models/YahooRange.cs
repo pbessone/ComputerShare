@@ -1,6 +1,6 @@
 ﻿namespace YahooFinanceApi
 {
-    public static class Range
+    public static class YahooRange
     {
         public const string OneDay = "1d";
         public const string FiveDays = "5d";

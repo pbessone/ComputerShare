@@ -11,7 +11,7 @@ namespace YahooFinanceApi
         {
             services.AddScoped<IShareHistoryQueryResponseConverter<ApiResponse>, YahooFinanceQueryResponseConverter>();
             services.AddScoped<IShareHistoryQueryRangeConverter, YahooFinanceRangeConverter>();
-            services.AddHttpClient<IShareHistoryQueryService, YahooFinanceQueryQueryService>();
+            services.AddHttpClient<IShareHistoryQueryService, YahooFinanceQueryService>();
         }
     }
 }

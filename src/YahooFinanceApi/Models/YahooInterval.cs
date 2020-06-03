@@ -1,6 +1,6 @@
 ﻿namespace YahooFinanceApi
 {
-    public static class Interval
+    public static class YahooInterval
     {
         public const string OneMinute = "1m";
         public const string TwoMinutes = "2m";
