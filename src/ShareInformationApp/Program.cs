@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using ShareInformationServices;
 using YahooFinanceApi;
@@ -14,17 +13,9 @@ namespace ShareInformationApp
             var services = ConfigureServices();
             var serviceProvider = services.BuildServiceProvider();
             
-            var service = serviceProvider.GetService<IBasicShareInformationService>();
-            var info = await service.GetBasicShareInformationAsync("GOOG");
-            
-            Console.WriteLine("Share Name: {0}", info.ShareName);
-            Console.WriteLine("Minimum Share Price: {0}", info.MinimumSharePriceForPeriod);
-            Console.WriteLine("Maximum Share Price: {0}", info.MaximumSharePriceForPeriod);
-            Console.WriteLine("Average Share Price: {0}", info.AverageSharePriceForPeriod);
-            
-            var exporter = serviceProvider.GetService<IBasicShareInformationExporter>();
-            var jsonString = exporter.GetJsonString(info);
-            Console.WriteLine("JSON: {0}", jsonString);
+            // Run application loop
+            var application = serviceProvider.GetService<MainApplication>();
+            await application.RunAsync();
         }
         
         private static IServiceCollection ConfigureServices()
@@ -34,6 +25,7 @@ namespace ShareInformationApp
             services.AddYahooFinanceApi();
             services.AddScoped<IBasicShareInformationService, BasicShareInformationService>();
             services.AddScoped<IBasicShareInformationExporter, BasicShareInformationExporter>();
+            services.AddScoped<MainApplication>();
             
             return services;
         }

@@ -12,7 +12,11 @@ Logging because it's critical for any production ready application and caching b
 
 Other things I would have liked is to make this a RESTFul API, probably containerise it with Docker so we could deploy this very easily as an independent microservice in some container cloud and maybe even show case a minimal build pipeline with CakeBuild.
 
-Should I have gone with the RESTful API approach I would have liked to build a minimal web application to allow a user to consume these services.
+Should I had gone with the RESTful API approach I would have liked to build a minimal web application to allow a user to consume these services.
+
+I would have liked to add tests for the YahooFinanceQueryService class, but since it heavily uses the HttpClient and this is not the easiest to mock, I left it out of the scope of this excercise. The tests I would have done here are validating the success and failure cases for parsing of the http response into an object graph, that errors where thrown correctly, that the converters were invoked, etc.
+
+I probably also would have spent a little more time defining the domain and giving classes better names.
 
 -----------------------------------------------------------------------------------
 
