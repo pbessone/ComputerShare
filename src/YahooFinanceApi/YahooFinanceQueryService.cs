@@ -49,7 +49,7 @@ namespace YahooFinanceApi
             {
                 return await response.Content.ReadFromJsonAsync<ApiResponse>();
             }
-            catch (JsonException ex)
+            catch (JsonException)
             {
                 throw new InvalidRequestException("JSON Exception", "There has been a problem parsing the response from the service");
             }

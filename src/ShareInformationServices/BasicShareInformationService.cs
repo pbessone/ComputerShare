@@ -23,6 +23,8 @@ namespace ShareInformationServices
             var range = ShareHistoryQueryRange.OneWeek;
             var response = await _shareHistoryQueryService.Query(symbol, range);
 
+            // This could all be done in a single for loop if needed, for performance reasons
+            // I just split it into three methods for better readability
             var history = response.History;
             var maximumSharePriceForPeriod = CalculateMaximumSharePrice(history.High);
             var minimumSharePriceForPeriod = CalculateMinimumSharePrice(history.Low);
